@@ -13,8 +13,8 @@ npm run dev        # desenvolvimento em http://localhost:5173
 
 ## Build e verificação
 ```bash
-npm run build      # checa os tipos (tsc) e gera a pasta dist/
-npm run preview    # serve o build localmente
+npm run build      
+npm run preview    
 ```
 Não há testes automatizados; a verificação é o `tsc` do build e a conferência visual contra o Figma.
 
