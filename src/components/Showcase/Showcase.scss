@@ -1,0 +1,36 @@
+@use '../../styles/variables' as *;
+
+.showcase {
+  &__header { width: min(100%, 1138px); margin: 0 auto; }
+  &__title-row { display: flex; align-items: center; gap: 34px; }
+  &__line { flex: 1; height: 1px; background: #dedede; }
+  &__title { font-size: 30px; font-weight: 700; line-height: 45px; color: $color-accent; text-align: center; }
+  &__all { display: block; width: max-content; margin: 4px auto 0; font-size: 15px; font-weight: 700; line-height: 23px; }
+
+  &__tabs { display: flex; width: min(100%, 1280px); margin: 4px auto 24px; }
+  &__tab {
+    @include button-reset; flex: 1; height: 40px; margin-left: -1px; border: 1px solid $color-border; background: $color-white;
+    font-size: 16px; text-transform: uppercase; color: #3b3b3b;
+    &:first-child { margin-left: 0; }
+    &.is-active { font-weight: 700; color: $color-accent; }
+    &:hover { color: $color-accent; }
+  }
+
+  &__carousel { position: relative; margin-top: 24px; padding: 0 47px; }
+  &__tabs + &__carousel { margin-top: 0; }
+  &__track {
+    display: flex; gap: 18px; padding: 8px 4px 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+  &__arrow {
+    @include button-reset; @include flex-center; position: absolute; top: 246px; z-index: 1; width: 32px; height: 32px;
+    border-radius: 50%; background: $color-white; color: $color-text; box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+    &--prev { left: 0; } &--next { right: 0; }
+  }
+  &__feedback { padding: 48px 0; text-align: center; }
+
+  @media (max-width: 900px) {
+    &__tabs { overflow-x: auto; scrollbar-width: none; margin-top: 8px; } &__tab { flex: 0 0 140px; }
+    &__carousel { padding: 0 8px; } &__arrow { display: none; }
+  }
+}

@@ -1,0 +1,23 @@
+// Valores extraídos do arquivo Figma (Teste Front-End Jr)
+$color-accent: #3442b5;      // azul principal (títulos, botões, "Frete grátis")
+$color-active: #3019b2;      // azul escuro das opções ativas (menu, categoria)
+$color-yellow: #f7ca11;
+$color-violet: #271c47;
+$color-navy: #041e50;
+$color-pink: #f71963;        // botão comprar do modal
+$color-text: #3f3f40;
+$color-gray: #9f9f9f;
+$color-gray-light: #f4f4f4;
+$color-border: #bdbdbd;
+$color-white: #ffffff;
+
+$font-main: 'Poppins', sans-serif;
+$font-alt: 'Work Sans', sans-serif;
+$font-title: 'Outfit', sans-serif;
+
+$container: 1280px;
+$container-wide: 1364px;
+$section-gap: 90px;
+
+@mixin flex-center { display: flex; align-items: center; justify-content: center; }
+@mixin button-reset { border: 0; background: none; font-family: inherit; cursor: pointer; }

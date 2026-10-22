@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+
+.brands {
+  &__title { font-size: 30px; font-weight: 700; line-height: 45px; text-align: center; color: $color-accent; }
+  &__list { display: flex; justify-content: safe center; gap: 42px; margin-top: 32px; padding: 8px; overflow-x: auto; scrollbar-width: none; }
+  &__item {
+    @include flex-center; flex: 0 0 211px; height: 211px; border-radius: 50%; background: $color-white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+  }
+
+  @media (max-width: 1280px) {
+    &__list { justify-content: flex-start; }
+  }
+}

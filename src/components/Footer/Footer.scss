@@ -1,0 +1,19 @@
+@use '../../styles/variables' as *;
+
+.footer {
+  &__main { min-height: 282px; background: $color-gray-light; }
+  &__inner { display: flex; gap: 90px; padding-top: 62px; }
+  &__brand { width: 354px; flex: none; p { max-width: 290px; margin-top: 24px; font-size: 14px; font-weight: 300; line-height: 21px; } }
+  &__social { display: flex; gap: 16px; margin-top: 25px; color: $color-text; }
+  &__divider { width: 1px; height: 198px; margin-top: -20px; background: #282828; }
+  &__columns { display: flex; gap: 100px; padding-top: 21px; }
+  &__column {
+    h2 { font-size: 16px; font-weight: 700; line-height: 16px; color: rgba(34, 34, 34, .75); }
+    ul { margin-top: 16px; }
+    li { margin-bottom: 16px; }
+    a { font: 400 14px/16px $font-alt; color: rgba(34, 34, 34, .7); &:hover { color: $color-accent; } }
+  }
+  &__copy { padding: 13px 16px; background: $color-white; text-align: center; font-size: 13px; font-weight: 300; line-height: 21px; }
+
+  @media (max-width: 1000px) { &__inner { flex-direction: column; gap: 32px; padding-bottom: 32px; } &__divider { display: none; } &__columns { flex-wrap: wrap; gap: 40px; } }
+}

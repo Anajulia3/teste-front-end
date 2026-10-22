@@ -1,31 +1,44 @@
-# Teste Econverse: Vaga Desenvolvedor Front-End
+# Teste Front-End Econverse
 
-### Vem ser #Econverse!
+Página em **React + TypeScript + Sass** (Vite) construída a partir do layout do Figma. A vitrine consome o `produtos.json` da Econverse e, ao clicar em um produto, abre um modal com as informações dele.
 
-Segue abaixo as instruções para a execução do teste.
+## Pré-requisitos
+- Node.js >= 18 e npm
 
-## Instruções
-- Faça um fork desse projeto para a sua conta pessoal do GitHub.
-- Desenvolva a página conforme as **Especificações Técnicas** 
-- Crie um README com as instruções para compilar, testar e rodar o projeto.
-- O link do repositório deverá ser enviado para o e-mail gustavo.cipriano@econverse.com.br com o título **Teste Vaga FrontEnd**
+## Como rodar
+```bash
+npm install
+npm run dev        # desenvolvimento em http://localhost:5173
+```
 
-## Especificações Técnicas
-- Desenvolver a pagina em React e TypeScript conforme o [layout](https://www.figma.com/file/rWnzPeoxgynuNPsJjV0VmV/Teste-Front-End-Jr?node-id=0%3A1). Para conseguir pegar os elementos do Figma, basta copiar o layout para sua conta que terá acesso de edição.
-- Montar a [vitrine](https://app.econverse.com.br/teste-front-end/junior/tecnologia/layout/vitrine-produtos.png) de produtos consumindo as informações dos produtos em json atraves desse [Link](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json).
-- Desenvolver a interação ao clicar em um produto conforme layout. A interação consiste em abrir um modal com as principais informações do produto presente no arquivo [JSON](https://app.econverse.com.br/teste-front-end/junior/tecnologia/lista-produtos/produtos.json) conforme o produto que clicar.
-- Utilizar Pré-processador Sass, Less ou Stylus.
-- Respeitar o Layout pixel a pixel, tamanho das fontes, cores e botões.
-- Não Utilizar bibliotecas UI como Bootstrap, Foundation, ou afins.
+## Build e verificação
+```bash
+npm run build      # checa os tipos (tsc) e gera a pasta dist/
+npm run preview    # serve o build localmente
+```
+Não há testes automatizados; a verificação é o `tsc` do build e a conferência visual contra o Figma.
 
-## Pontos Extras
-- Utilizar Boas práticas de SEO
-- Uso de HTML semântico
+## Estrutura
+```
+src/
+├── components/   # Header, Hero, Categories, Showcase, ProductCard, ProductModal,
+│                 # Banners, Brands, Newsletter, Footer, Logo, Icon (cada um com seu .scss)
+├── hooks/        # useProducts: estado de loading, erro e dados
+├── services/     # productService: chamada ao JSON
+├── types/        # interfaces TypeScript
+├── utils/        # formatação de preço e parcelas
+└── styles/       # variáveis (cores/fontes do Figma) e estilos globais
+public/images/    # imagens exportadas do Figma e otimizadas
+```
 
-## O que avaliaremos em seu teste
-- Organização do projeto
-- Lógica do código
-- Componentização
-- Alcance dos objetivos propostos
+## Consumo de API e CORS
+O endpoint remoto oficial da Econverse não envia cabeçalhos CORS (`Access-Control-Allow-Origin`).
+- **Desenvolvimento e Preview local:** O `vite.config.ts` gerencia isso de forma transparente através de um proxy reverso em `/api/produtos` apontando para o servidor da Econverse, tanto no comando `npm run dev` quanto no `npm run preview`.
+- **Produção e Deploy Externo:** O serviço `productService.ts` realiza a chamada direta à URL remota. Caso o projeto seja publicado em um provedor de hospedagem externo (como Vercel, Netlify ou GitHub Pages), o navegador bloqueará a requisição por CORS, exigindo que o provedor tenha uma regra de rewrite/proxy configurada (por exemplo, `vercel.json` ou `_redirects`).
 
-**Boa sorte! ;)**
+## Decisões Técnicas
+- **Sass (BEM):** Sem bibliotecas de terceiros (Bootstrap, Tailwind, etc.); estilos organizados em módulos `.scss` e tokens/variáveis em `src/styles/_variables.scss`.
+- **Hook useProducts & React StrictMode:** O hook gerencia cancelamento via `AbortController` e garante que montagens duplas em StrictMode não deixem o estado de `loading` ou `products` inconsistente.
+- **Acessibilidade & Semântica:** Uso correto de landmarks HTML5 (`header`, `nav`, `main`, `section`, `article`, `footer`), hierarquia com único `h1`, textos alternativos (`alt`), labels em inputs e botões. O modal implementa `role="dialog"`, `aria-modal="true"`, foco automático inicial, fechamento com `Esc`, clique fora ou botão `×`, e contenção de foco com tecla `Tab`.
+- **SEO:** Metadados completos no `index.html` (`lang="pt-BR"`, `title`, `meta description`, Open Graph).
+- **Responsividade:** layout pensado para 1440px (conforme o Figma), com ajustes por `@media` para telas menores; carrosséis e abas usam rolagem horizontal própria.

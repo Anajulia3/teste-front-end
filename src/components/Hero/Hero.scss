@@ -1,0 +1,18 @@
+@use '../../styles/variables' as *;
+
+.hero {
+  height: 390px; color: $color-white;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .35) 40%, rgba(0, 0, 0, 0) 65%),
+    url('/images/hero.jpg') center / cover no-repeat;
+
+  &__content { padding: 78px 0 0 8px; }
+  &__title { max-width: 620px; font-size: 48px; font-weight: 600; line-height: 50px; }
+  &__subtitle { margin-top: 18px; font-size: 32px; font-weight: 400; line-height: 48px; strong { font-weight: 700; color: $color-yellow; } }
+  &__cta {
+    @include flex-center; width: 206px; height: 50px; margin: 37px 0 0 9px;
+    background: $color-yellow; color: $color-violet; border-radius: 5px; font-size: 16px; font-weight: 600;
+    transition: filter .2s; &:hover { filter: brightness(.95); }
+  }
+
+  @media (max-width: 700px) { &__title { font-size: 32px; line-height: 38px; } &__subtitle { font-size: 22px; } }
+}
